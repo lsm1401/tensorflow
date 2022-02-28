@@ -142,6 +142,7 @@ cc_library(
         ":shape",
         ":status",
         ":tensor",
+        "//tensorflow/lite:minimal_logging",
         "@com_google_absl//absl/memory",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/strings",

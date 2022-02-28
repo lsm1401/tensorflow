@@ -30,6 +30,7 @@ limitations under the License.
 #include "tensorflow/lite/delegates/gpu/common/shape.h"
 #include "tensorflow/lite/delegates/gpu/common/status.h"
 #include "tensorflow/lite/delegates/gpu/common/tensor.h"
+#include "tensorflow/lite/minimal_logging.h"
 
 namespace tflite {
 namespace gpu {
@@ -505,6 +506,8 @@ bool IsBatchMatchesForAllValues(const GraphFloat32& model) {
   const int32_t b = model.values()[0]->tensor.shape.b;
   for (auto value : model.values()) {
     if (value->tensor.shape.b != b) {
+      TFLITE_LOG(TFLITE_LOG_WARNING, "Batch size mismatch, got ",
+                 value->tensor.shape.b, ", ", b, " expected");
       return false;
     }
   }
